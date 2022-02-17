@@ -3,6 +3,8 @@ package com.example.nbp.api;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
+
 @Component
 public class NbpClient {
 
@@ -14,8 +16,17 @@ public class NbpClient {
         return restTemplate.getForObject(currencyValue + "{currency}", String.class, currency);
     }
 
-    public String getAverage(){
-        return restTemplate.getForObject(average, String.class);
+    public String getCurrencyForFiveBusinessDays(String currency){
+        LocalDate now = LocalDate.now();
+        LocalDate minusFive = now.minusDays(6);
+        return restTemplate.getForObject(currencyValue
+        + "{currency}" + "/" + minusFive + "/" + now, String.class, currency);
     }
 
+    public String getGold(){
+        LocalDate now = LocalDate.now();
+        LocalDate minusFourteen = now.minusDays(15);
+        return restTemplate.getForObject(average + minusFourteen + "/" + now + "/",
+                String.class);
+    }
 }

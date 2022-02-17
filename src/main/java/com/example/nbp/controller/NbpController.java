@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+@RestController
 @Controller
 @RequiredArgsConstructor
 public class NbpController {
@@ -18,15 +21,19 @@ public class NbpController {
         return "home";
     }
 
-    @GetMapping("api/exchange-rates/{currencyCode}")
-    @ResponseBody
-    public String showCurrency(@PathVariable String currencyCode){
+    @GetMapping("/{currency}")
+    public String getCurrency(@PathVariable String currency){
+        return nbpClient.getCurrencyForFiveBusinessDays(currency);
+    }
+
+    @GetMapping("/api/exchange-rates/{currencyCode}")
+    public String getCurrencyForFiveBusinessDays(@PathVariable String currencyCode){
         return nbpClient.getCurrency(currencyCode);
     }
 
-    @GetMapping(" /average")
-    public String showAverage(){
-        return nbpClient.getAverage();
+    @GetMapping(" /api/gold-price/avarage")
+    public String getGold(){
+        return nbpClient.getGold();
     }
 
 }

@@ -16,8 +16,4 @@ public class NbpService {
         return nbpClient.getCurrency(currency);
     }
 
-    public String getAverage(){
-        return nbpClient.getAverage();
-    }
-
 }
