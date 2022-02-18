@@ -1,19 +1,12 @@
 package com.example.nbp.service;
 
-import com.example.nbp.api.NbpClient;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 
-@Service
-@Slf4j
-@RequiredArgsConstructor
-public class NbpService {
 
-    private final NbpClient nbpClient;
+public interface NbpService {
 
-    public String getCurrency(String currency){
-        return nbpClient.getCurrency(currency);
-    }
+    String getCurrencyForFiveBusinessDays(String currency);
+    String getAverage();
+    LocalDate subtractDaysSkippingWeekends(LocalDate date, int days);
 
 }
