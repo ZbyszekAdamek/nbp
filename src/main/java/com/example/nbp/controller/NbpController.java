@@ -31,9 +31,8 @@ public class NbpController {
         return nbpClient.getCurrency(currencyCode);
     }
 
-    @GetMapping(" /api/gold-price/avarage")
-    public String getGold(){
-        return nbpClient.getGold();
+    @GetMapping("/api/gold-price/avarage")
+    public String getTest(){
+        return nbpClient.getAverage();
     }
-
 }

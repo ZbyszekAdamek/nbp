@@ -23,10 +23,9 @@ public class NbpClient {
         + "{currency}" + "/" + minusFive + "/" + now, String.class, currency);
     }
 
-    public String getGold(){
+    public String getAverage(){
         LocalDate now = LocalDate.now();
         LocalDate minusFourteen = now.minusDays(15);
-        return restTemplate.getForObject(average + minusFourteen + "/" + now + "/",
-                String.class);
+        return restTemplate.getForObject(average + minusFourteen + "/" + now, String.class);
     }
 }
