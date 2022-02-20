@@ -16,17 +16,17 @@ public class NbpClient implements NbpService {
 
     public String getCurrencyForFiveBusinessDays(String currency){
         LocalDate now = LocalDate.now();
-        LocalDate minusFive = subtractDaysSkippingWeekends(now, 4);
+        LocalDate minusFive = subtractDaysAvoidWeekends(now, 5);
         return restTemplate.getForObject(currencyValue
         + "{currency}" + "/" + minusFive + "/" + now, String.class, currency);
     }
 
     public String getAverage(){
         LocalDate now = LocalDate.now();
-        LocalDate minusFourteen = subtractDaysSkippingWeekends(now, 13);
+        LocalDate minusFourteen = subtractDaysAvoidWeekends(now, 14);
         return restTemplate.getForObject(average + minusFourteen + "/" + now, String.class);
     }
-    public LocalDate subtractDaysSkippingWeekends(LocalDate date, int days) {
+    public LocalDate subtractDaysAvoidWeekends(LocalDate date, int days) {
         LocalDate result = date;
         int subtractedDays = 0;
         while (subtractedDays < days) {

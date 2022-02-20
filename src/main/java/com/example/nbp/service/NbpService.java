@@ -7,6 +7,6 @@ public interface NbpService {
 
     String getCurrencyForFiveBusinessDays(String currency);
     String getAverage();
-    LocalDate subtractDaysSkippingWeekends(LocalDate date, int days);
+    LocalDate subtractDaysAvoidWeekends(LocalDate date, int days);
 
 }
